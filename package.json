@@ -1,17 +1,25 @@
 {
   "name": "maciek",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "A collection of Maciek Sitkowski's utility scripts",
+  "author": "Maciek Sitkowski",
+  "module": "hello.ts",
+  "type": "module",
   "bin": {
-    "hello": "hello.js"
+    "hello": "hello.ts"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "publish": "npm publish --access public"
   },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "license": "MIT",
   "keywords": [
     "utilities",
     "scripts"
-  ],
-  "author": "Maciek Sitkowski",
-  "license": "MIT"
+  ]
 }
