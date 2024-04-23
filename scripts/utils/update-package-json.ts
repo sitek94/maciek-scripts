@@ -1,10 +1,14 @@
-export async function updatePackageJson({name}: {name: string}) {
-  const path = `./${name}/package.json`
+export async function updatePackageJson(
+  path: string,
+  properties: {
+    name: string
+  },
+) {
   const file = Bun.file(path)
 
   const contents = await file.json()
 
-  contents.name = name
+  contents.name = properties.name
 
   await Bun.write(path, JSON.stringify(contents, null, 2))
 }

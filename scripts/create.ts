@@ -11,6 +11,8 @@ const projectName = await input({
   default: 'new-project',
 })
 
+const projectDirectory = `${import.meta.dir}/${projectName}`
+
 console.log(`Creating new project: ${projectName}`)
 console.log(`Using starter: ${reactStarter}`)
 console.log('')
@@ -18,10 +20,12 @@ console.log('Cloning starter...')
 await $`gh repo clone ${reactStarter} ${projectName} -- --depth 1`
 
 console.log('Cleaning up...')
-await $`rm -rf ${projectName}/.git r${projectName}/renovate.json`
+await $`rm -rf ${projectDirectory}/.git ${projectDirectory}/renovate.json`
 
 console.log('Updating package.json...')
-await updatePackageJson({name: projectName})
+await updatePackageJson(`${projectDirectory}/package.json}`, {
+  name: projectName,
+})
 
 console.log('Initializing git...')
 await $`git init ${projectName}`
