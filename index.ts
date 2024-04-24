@@ -7,7 +7,13 @@ const scriptPath = `${import.meta.dirname}/scripts/${script}.ts`
 const file = Bun.file(scriptPath)
 
 if (await file.exists()) {
-  await $`bun ${scriptPath}`
+  try {
+    await $`bun ${scriptPath}`.cwd(process.cwd())
+  } catch (error: any) {
+    console.log(`Script "${script}" failed with code ${error.exitCode}`)
+    console.log(error.stdout.toString())
+    console.log(error.stderr.toString())
+  }
 } else {
   console.error(`Script not found: ${script}`)
 }
