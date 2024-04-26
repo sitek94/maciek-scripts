@@ -56,7 +56,7 @@ if (installDependencies) {
 
 const openInVSCode = await confirm({message: 'Open project in VSCode?'})
 if (openInVSCode) {
-  await $`code ${projectName}`
+  await $`cd ${projectName} && code .`
 }
 
 console.log('Done!')
